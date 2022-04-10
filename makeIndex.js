@@ -23,8 +23,8 @@ dirs.forEach((x) => makeIndex(x, depth, opts.comment));
 function makeIndex(dir, maxDepth, comment) {
   const files = collectFiles(dir, { maxDepth })
     .map((x) => relative(dir, x).replace('\\', '/'))
-    .sort(sortPath)
-    .filter((x) => x !== 'index');
+    .filter((x) => x !== getImportPath('./', 'index'))
+    .sort(sortPath);
 
   if (!comment) {
     comment = `node ${relative(dir, fileURLToPath(import.meta.url))}`;
