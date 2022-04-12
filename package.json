@@ -2,9 +2,12 @@
   "name": "ddb-table-client",
   "version": "0.1.2",
   "type": "module",
+  "main": "./lib/cjs/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
-    "default": "./lib/index.js",
-    "types": "./lib/index.d.ts"
+    "types": "./lib/index.d.ts",
+    "import": "./lib/index.js",
+    "default": "./lib/cjs/index.js"
   },
   "author": {
     "name": "Gordon Leigh"
@@ -16,9 +19,10 @@
     "url": "https://github.com/gordonmleigh/ddb-table-client.git"
   },
   "scripts": {
-    "build": "npm run clean && npm run index && npm run lint && npm run compile",
+    "build": "npm run clean && npm run index && npm run lint && npm run compile && npm run compile:cjs",
     "clean": "rm -rf lib/",
     "compile": "tsc",
+    "compile:cjs": "tsc -p tsconfig.cjs.json",
     "index": "node makeIndex.js src/",
     "lint": "eslint src/ --ext=ts"
   },
